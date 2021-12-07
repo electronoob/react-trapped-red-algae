@@ -23,72 +23,80 @@ function App() {
     var playerNames = "abstract bio biography curriculum digest epitome history life précis recapitulation resume review rundown résumé story sum summary summation summing-up synopsis vita vitae work".split(" ");
 
     var colors = [
-        "rgb(255,69,69)",
-        "rgb(255,159,159)",
-        "rgb(255,214,214)",
-        "rgb(50,215,215)",
-        "rgb(100,210,210)",
-        "rgb(10,132,132)",
-        "rgb(94,92,92)",
-        "rgb(191,90,90)",
-        "rgb(255,55,55)",
+      "rgb(255,69,69)",
+      "rgb(255,159,159)",
+      "rgb(255,214,214)",
+      "rgb(50,215,215)",
+      "rgb(100,210,210)",
+      "rgb(10,132,132)",
+      "rgb(94,92,92)",
+      "rgb(191,90,90)",
+      "rgb(255,55,55)",
+      /*vibrant*/
+      "rgb(0,120,255)",
+      "rgb(189,0,255)",
+      "rgb(255,154,0)",
+      "rgb(1,255,31)",
+      "rgb(227,255,0)",
     ];
 
     ctx.imageSmoothingEnabled = false
+
     var i;
     for(i=0;i<foodMax;i++)
     cells.push(makeCell(
-        // makeCell
-        // type, x, y, radius, color, name, id
-        'food',
-        Math.abs(gri(foodMass, width  - foodMass)),
-        Math.abs(gri(foodMass, height - foodMass)),
-        foodMass,
-        colors[gri(0,colors.length-1)],
-        null,
-        null
+      // makeCell
+      // type, x, y, radius, color, name, id
+      'food',
+      Math.abs(gri(foodMass, width  - foodMass)),
+      Math.abs(gri(foodMass, height - foodMass)),
+      foodMass,
+      colors[gri(0,colors.length-1)],
+      null,
+      null
     ));
 
     cells.push(makeCell(
-        // makeCell
-        // type, x, y, radius, color, name, id
-        'cell',
-        gri(playerStartMass, width  - playerStartMass),
-        gri(playerStartMass, height - playerStartMass),
-        playerStartMass,
-        colors[gri(0,colors.length-1)],
-        playerNames[gri(0, playerNames.length -1)],
-        playerStartID
+      // makeCell
+      // type, x, y, radius, color, name, id
+      'cell',
+      gri(playerStartMass, width  - playerStartMass),
+      gri(playerStartMass, height - playerStartMass),
+      playerStartMass,
+      colors[gri(0,colors.length-1)],
+      playerNames[gri(0, playerNames.length -1)],
+      playerStartID
     ));
 
     cells.push(makeCell(
-        // makeCell
-        // type, x, y, radius, color, name, id
-        'virus',
-        gri(virusStartMass, width  - virusStartMass),
-        gri(virusStartMass, height - virusStartMass),
-        virusStartMass,
-        "green",
-        null,
-        null
+      // makeCell
+      // type, x, y, radius, color, name, id
+      'virus',
+      gri(virusStartMass, width  - virusStartMass),
+      gri(virusStartMass, height - virusStartMass),
+      virusStartMass,
+      "green",
+      null,
+      null
     ));
+    var localPlayerCells = getPlayerCellsByID(playerStartID);
 
     function makeCell(type, x, y, radius, color, name, id) {
-        return {
-            x: x,
-            y: y,
-            radius: radius,
-            name: name,
-            color: color,
-            type: type,
-            id: id,
-        }
+      return {
+        x: x,
+        y: y,
+        radius: radius,
+        name: name,
+        color: color,
+        type: type,
+        id: id,
+      }
     }
     function render() {
-        ctx.clearRect(0, 0, width, height);
-        drawCells();
-        doSomeBotStuff();
-        window.requestAnimationFrame(render);
+      ctx.clearRect(0, 0, width, height);
+      drawCells();
+      doSomeBotStuff();
+      window.requestAnimationFrame(render);
     }
     function drawCells() {
       cells.forEach((c) => {
@@ -103,11 +111,9 @@ function App() {
         ctx.closePath();
         ctx.stroke();
         ctx.closePath();
-
         
         if(c.type === "virus")
             ctx.globalAlpha = 0.4;
-        
         if(c.type !== "cell") {
             ctx.beginPath();
             ctx.arc(c.x, c.y, c.radius, 0, 2 * Math.PI);
@@ -116,18 +122,13 @@ function App() {
             ctx.closePath();
         }
         ctx.globalAlpha = 1.0;
-
         if(c.type === "cell") {
-            var text = c.name;
-            ctx.font = c.radius * cellNameTextMultiplier +  "px Arial";
-            var width = ctx.measureText(text).width;
-            
-            ctx.fillStyle = "white";
-            ctx.fillText(text,    c.x - width/2,   c.y + c.radius/3);
-            
-            ctx.strokeStyle = "black";
-            ctx.lineWidth = c.radius / 60;
-            ctx.strokeText(text,  c.x - width/2,   c.y + c.radius/3);
+          var text = c.name;
+          ctx.font = c.radius * cellNameTextMultiplier +  "px 'Segoe UI'";
+          var width = ctx.measureText(text).width;
+          
+          ctx.fillStyle = "white";
+          ctx.fillText(text,    c.x - width/2,   c.y + c.radius/3);
         }
       });
     }
@@ -137,7 +138,7 @@ function App() {
     }
     function doSomeBotStuff() {
       // let's locate nearest food.
-      var localPlayerCells = getPlayerCellsByID(playerStartID);
+      //var localPlayerCells = getPlayerCellsByID(playerStartID);
       var i;
       var nearest = null;
       for(i=0;i<cells.length;i++) {
@@ -181,10 +182,9 @@ function App() {
       return Math.sqrt( (x*x) + (y*y) )
     }
     setInterval(()=>{
-      var localPlayerCells = getPlayerCellsByID(playerStartID);
       localPlayerCells[0].x += Math.sin(Date.now() / 10000) /2 ;
       localPlayerCells[0].y += Math.sin(Date.now() / 1000)  /2;
-    }, 1);
+    }, 8);
     window.requestAnimationFrame(render);
   });
   return (

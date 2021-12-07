@@ -5,27 +5,14 @@
   --padding-sides: 6vw;
   --font-header-size: 4vw;
 }
-
-canvas#canvas {
-  image-rendering: optimizeSpeed;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: pixelated;
-  image-rendering: optimize-contrast;
-  -ms-interpolation-mode: nearest-neighbor;
-}
-
 h1#myname {
   padding-left: var(--padding-sides);
   font-size: var(--font-header-size);  
 }
-
 div#container {
   padding: 0px;
   margin: 0px;
 }
-
 li {
   list-style: none;
 }
@@ -58,9 +45,6 @@ div#list-blurb{
 }
 
 h2 {
-  /*
-  border: var(--border-thickness) solid var(--border-color);
-  */
   padding-left: var(--padding-sides);
   padding-right: var(--padding-sides);
   margin-left: 4vw;
