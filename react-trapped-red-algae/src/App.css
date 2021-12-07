@@ -1,0 +1,85 @@
+
+:root {
+  --border-thickness: 3px;
+  --border-color: #999;
+  --padding-sides: 6vw;
+  --font-header-size: 4vw;
+}
+
+canvas#canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+h1#myname {
+  padding-left: var(--padding-sides);
+  font-size: var(--font-header-size);  
+}
+
+div#container {
+  padding: 0px;
+  margin: 0px;
+}
+
+li {
+  list-style: none;
+}
+hr {
+  height: var(--border-thickness);
+  border-width: 0;
+  color: var(--border-color);
+  background-color: var(--border-color);
+}
+div#list {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+  vertical-align: middle;
+  font-size: 4vw;  
+  line-height: 7vw;
+}
+div#blurb {
+  display: inline-block;
+  width: 70%;
+  text-align: justify;
+  vertical-align: middle;
+  font-size: 2.5vw;  
+  line-height: 5vw;
+  font-weight: 100;
+}
+
+div#list-blurb{
+  width: 100vw;
+}
+
+h2 {
+  /*
+  border: var(--border-thickness) solid var(--border-color);
+  */
+  padding-left: var(--padding-sides);
+  padding-right: var(--padding-sides);
+  margin-left: 4vw;
+  margin-right: 4vw;
+  font-size: var(--font-header-size);  
+}
+
+p {
+  padding-left: var(--padding-sides);
+  padding-right: var(--padding-sides);
+  margin-left: 4vw;
+  margin-right: 4vw;
+  font-size: 2.5vw;  
+  line-height: 5vw;
+  font-weight: 100;
+  text-align: justify;
+}
+
+br#spacer {
+  line-height: 2vh;
+  height: 2vh;
+}
